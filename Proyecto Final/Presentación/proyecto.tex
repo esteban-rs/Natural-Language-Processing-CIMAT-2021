@@ -1,0 +1,469 @@
+\documentclass[10pt]{beamer}
+\usepackage[latin1]{inputenc}
+\usepackage[english,spanish]{babel}
+\usefonttheme{serif}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath, amsfonts, amssymb, amsthm}
+\usepackage{mathrsfs}
+\usepackage{graphicx}
+\usetheme{CambridgeUS}
+\usepackage{epsfig}
+\usepackage{enumerate}
+%%%%%%%%%%%%%%%% COLUMNS %%%%%%%%%%%%%%%% %%%%%
+\usepackage{multicol}
+\setlength{\columnsep}{1cm}
+
+%%%%%%%%%%%%% GRAPHICS N FIGURES %%%%%%%%%%%%%
+\usepackage{pgf,tikz, pgfplots}
+\usetikzlibrary{arrows}
+\pgfplotsset{compat=1.15}
+%%%%%%%%%%%%%%%%%%%% BOXES %%%%%%%%%%%%%%%%%%%
+\usepackage{bm}
+\newcommand{\commentedbox}[2]{%
+	\mbox{
+		\begin{tabular}[t]{@{}c@{}}
+			$\boxed{\displaystyle#1}$\\
+			#2
+		\end{tabular}%
+	}%
+}
+\usepackage{framed}
+\usepackage{wrapfig}\definecolor{shadecolor}{RGB}{224,238,238}
+
+\usepackage{multirow}
+\usepackage{mathtools}
+%%%%%%%%%%%%%%%%%%%%%%%%% DEFINITIONS %%%%%%%%%%%%%%%%%%%%%%%%
+%DIFINITION
+\theoremstyle{definition}
+\newtheorem{defi}{Definici\'on}[section]
+%OBSERVATION
+\theoremstyle{definition}
+\newtheorem{obs}{Observaci\'on}
+%OBSERVATIONS
+\theoremstyle{definition}
+\newtheorem{obss}{Observaciones}
+%LEMA
+\theoremstyle{definition}
+\newtheorem{lem}{Lema}
+%THEOREM
+\theoremstyle{definition}
+\newtheorem{teo}{Teorema}
+%COROLARIO
+\theoremstyle{definition}
+\newtheorem{cor}{Corolario}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+	\author{Esteban Reyes Saldaña}
+	\title{Sentimental LIAR: Corpus Extendido y Modelos de Deep Learning para Clasificación de Afirmaciones Falsas}
+	\subtitle{Procesamiento del Lenguaje Natural}
+	%\logo{}
+	\institute{Centro de Investigación en Matemáticas}
+	%\date{}
+	%\subject{}
+	%\setbeamercovered{transparent}
+	%\setbeamertemplate{navigation symbols}{}\sqrt{}
+
+%%%%%%%%%%%%%%%%  F R A M E  1  %%%%%%%%%%%%%%%%
+\begin{frame}[plain]
+	\maketitle
+\end{frame}
+%%%%%%%%%%%%%%%%  F R A M E  2  %%%%%%%%%%%%%%%%
+\begin{frame}{Introducción}
+	\begin{itemize}
+		\item Flujo de información de redes sociales ha facilitado su acceso a los usuarios.
+		\item Acceso a internet permite a los usuarios no sólo el consumo si no también la contribución a la información.
+		\item Los beneficios anteriores vienen con el costo de desconocer la veracidad de la información.
+	\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{Problemas}	
+\begin{enumerate}
+	\item Campañas de información falsa.
+	\item Los usuarios de manera intencional o no, consumen noticias faltas y también la comparten con sus contactos.
+\end{enumerate}
+% \begin{defi}
+% 	El \textbf{fenómeno de noticias falsas} se refiere a la rediodifusión de información que es intencionalmente y verificablemente falsa.
+% \end{defi}
+\end{frame}
+%%%%%%%%%%%%%%%%  F R A M E  3  %%%%%%%%%%%%%%%%
+\begin{frame}{Ejemplos de FakeNews}
+	\begin{enumerate}
+		\item [2016] Eleecciones Presidenciales de US
+			\begin{center}
+				\includegraphics[width=0.7\linewidth]{figures/us_elections}
+			\end{center}
+		\item [2016] Genocidio en Myanmar
+			\begin{center}
+				\includegraphics[width=0.7\linewidth]{figures/myanmar}
+			\end{center}
+	\end{enumerate}
+\end{frame}
+%%%%%%%%%%%%%%%%  F R A M E  4  %%%%%%%%%%%%%%%%
+\begin{frame}{Ejemplos de FakeNews}
+	\begin{enumerate}
+		\item [2017] Barack Obama fue Herido en una Exploción
+		\begin{center}
+			\includegraphics[width=0.7\linewidth]{figures/obama}
+		\end{center}
+		\item [2020] 5G es la causa de Propagación de SARS-COV2
+		\begin{center}
+			\includegraphics[width=0.7\linewidth]{figures/5g}
+		\end{center}
+	\end{enumerate}
+\end{frame}
+
+%%%%%%%%%%%%%%%%  F R A M E  6  %%%%%%%%%%%%%%%%
+\section{Revisión de la Literatura}
+\begin{frame}{Revisión de la Literatura}
+	\begin{defi}
+		\textbf{Clasificación de noticias falsas} se refiere al proceso de determinar cuando una noticia contiene información falsa/desinformativa o no.
+	\end{defi}
+	\textcolor{red}{\textbf{Enfoque Tradicional}}
+	\begin{itemize}
+		\item hecha por expertos y periodistas.
+		\item problema: grandes volúmenes de información.
+	\end{itemize}
+\textcolor{blue}{\textbf{Enfoque Reciente}}
+\begin{itemize}
+	\item automatizar el proceso de clasificación.
+	\item propuesta: usar aprendizaje máquina y  NLP para noticias y publicidades.
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%  F R A M E  7  %%%%%%%%%%%%%%%%
+\begin{frame}{Algunas definiciones}
+	\begin{defi}
+		\textbf{Noticia falsa}. Se refiere a información fabricada que imita el contenido de los medios de comunicación en forma pero no en el proceso organizativo e intencional.
+	\end{defi}
+	\textcolor{blue}{\textbf{Hipótesis de Underutsch}}
+	\\
+	La diferencia entre las noticias falsas y verdaderas está en términos de estilo de escritura (autenticidad, intención)
+	\\
+	\textcolor{blue}{\textbf{Teoría de los Cuatro Factores}}
+	\\
+	La  afirmaciones verdaderas falsas y verdaderas son expresadas con distintas emociones y sentimientos.
+	\\
+	\textcolor{white}{text}
+	\\
+	\textcolor{white}{text}
+	\\
+	\textcolor{white}{text}
+	\\
+	\textbf{Hipótesis} $ \to $ emociones y sentimientos ayudan a distinguir afirmaciones verdaderas y falsas.
+\end{frame}
+
+%%%%%%%%%%%%%%%%  F R A M E  10  %%%%%%%%%%%%%%%%
+\section{Estado del Arte}
+\begin{frame}{Bases de Datos}
+	\begin{tabular}{ccccc}
+		\hline
+		\hline
+		\textbf{Nombre} &         \textbf{Tipo}        &  \textbf{Tamaño}  & \textbf{Etiquetas} & \textbf{Anotadores}  \\
+		\hline
+		\hline
+		FEVER  & afirmaciones cortas &  185,445 &     3     & $\begin{matrix}
+			personal \\
+			entrenado
+		\end{matrix}$ \\
+		
+		PHEME  & hilos de twitter &  330 &     2     & \textit{periodistas} \\
+		
+		LIAR   & afirmaciones cortas & 12,836 & 6 & $\begin{matrix}
+			editores \\
+			periodistas
+		\end{matrix}$ \\
+		\hline
+	\end{tabular}
+\end{frame}
+%%%%%%%%%%%%%%%%  F R A M E  11  %%%%%%%%%%%%%%%%
+\begin{frame}{LIAR}
+	\begin{equation}
+		\textup{labels} \left\{ \begin{matrix}
+			\textup{pants-fire} & \textup{half-true} \\
+			\textup{false}      & \textup{mostly-true} \\
+			\textup{barely-true} & 
+		\end{matrix} \right.
+	\end{equation}
+\begin{center}
+		\begin{tabular}{|c|c|}
+		\hline
+		\hline
+		Statement & $\begin{matrix}
+			\textup{McCain opposed a requirement that} \\
+			\textup{the government buy American-made}\\
+			\textup{motorcycles. And he said all buy-American} \\
+			\textup{provisions were quote 'disgraceful.'}
+		\end{matrix}$  \\
+		\hline
+		\hline
+		ID & 620 \\
+		
+		LABEL & True \\
+		
+		Speaker & Barack Obama \\
+		
+		Speaker Job & President \\
+		
+		State Info &  Illinois \\
+		
+		Party Affiliation & democrat \\
+		
+		counts & 70, 71, 160, 163, 9 \\
+		
+		Context & a radio ad \\
+		\hline
+	\end{tabular}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%  F R A M E  12  %%%%%%%%%%%%%%%%
+\begin{frame}{Deep Learning}
+\begin{center}
+	\begin{tabular}{ccccc}
+	\hline
+	\hline
+	Autor & Año & meta-data & Modelo & Accuracy \\
+	\hline
+	\hline
+	Wang & 2017 &+speaker + All & CNN & 0.274 \\
+
+	Long & 2017 & +All & LSTM & 0.415 \\
+
+	Kirilin & 2018 &+All + sp2c & LSTM & 0.457 \\
+	\hline
+\end{tabular}
+\end{center}
++All significa que se incluyó metadata de LIAR.
+\end{frame}
+
+%%%%%%%%%%%%%%%%  F R A M E  13  %%%%%%%%%%%%%%%%
+\begin{frame}{BERT}
+\begin{enumerate}
+	\item Modelo del estado del arte que usa transformers para aprender las relaciones contextuales del texto dado de manera bidireccional.
+	\item Permite ajustes finos para otras tareas a nivel de token.
+\end{enumerate}
+\textcolor{white}{text}
+\\
+\textcolor{white}{text}
+\begin{equation*}
+	\textup{Etapas} \to \left\{\begin{matrix}
+		 			MLM\\
+				    NSP
+	\end{matrix}
+		    \right.
+\end{equation*}
+\end{frame}
+
+%%%%%%%%%%%%%%%%  F R A M E  14  %%%%%%%%%%%%%%%%
+\section{Metodología}
+\begin{frame}{Idea general}
+\textbf{Hipótesis} : las afirmaciones falsas están escritas en un estilo exagerado y con emociones fuertes.
+\begin{center}
+	\includegraphics[width=0.7\linewidth]{figures/bert_plus}
+\end{center}
+\end{frame}
+
+%%%%%%%%%%%%%%%%  F R A M E  15  %%%%%%%%%%%%%%%%
+\begin{frame}{Sentimental-LIAR}
+\begin{table}[ht]
+	\caption{Ejemplo de Sentimental LIAR}
+	\begin{center}
+		\footnotesize{\begin{tabular}{lll}
+			\hline
+			\multirow{6}{*}{TEXT} & statement &  $\begin{matrix*}[r]
+														\textup{McCain opposed a requirement that the government\textcolor{white}{tex}} \\
+														\textup{buy American-made motorcycles. And he said all buy-\textcolor{white}{t}}\\
+														\textup{American provisions were quote 'disgraceful.' \textcolor{white}{texttextte}}
+													\end{matrix*}$ \\
+			                       & subject   & federal-budget   \\
+								   & speaker\_job   & President   \\
+								   & state\_info  & Illinois   \\
+								   & party\_affiliation  & democrat   \\
+								   & sentiment   & NEGATIVE   \\
+			\hline
+			\multirow{5}{*}{EMO} & anger       & 0.1353  \\
+								   & disgust   & 0.8253   \\
+								   & sad       & 0.1419   \\
+								   & fear      & 0.0157   \\
+								   & joy       & 0.0236   \\
+			\hline
+			\multirow{5}{*}{SPC} & barely\_true\_counts       & 70  \\
+								 & false\_counts   & 71  \\
+								 & half\_true\_counts       & 160   \\
+								 & mostly\_true\_counts      & 163   \\
+								 & pants\_on\_fire\_counts       & 9   \\
+			\hline
+				SEN   		     & sentiment\_score & -0.7   \\
+			\hline
+		\end{tabular}}
+	\end{center}
+	\label{tab:multicol}
+\end{table}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%  F R A M E  17  %%%%%%%%%%%%%%%%
+\section{Modelos}
+\begin{frame}{BERT + FNN}
+\begin{center}
+	\includegraphics[width=0.5\linewidth]{figures/FNN}
+\end{center}
+\end{frame}
+\begin{frame}{BERT + CNN}
+\begin{center}
+	\includegraphics[width=0.7\linewidth]{figures/CNN}
+\end{center}
+\end{frame}
+
+%%%%%%%%%%%%%%%%  F R A M E  18  %%%%%%%%%%%%%%%%
+\section{Resultados}
+\begin{frame}{Parámetros Generales}
+	El dataset fue dividido en $ 80\% $ entrenamiento, $ 10\% $ validación y $ 10\% $ pruebas.
+	\begin{center}
+		\begin{tabular}{cc}
+			\hline
+			\hline
+			parámetro & atributos  \\
+			\hline
+			\hline
+			batch\_size & 8 \\
+			learning\_rate & $ 1e^{-5} $  \\
+			Dropout (BERT-Base) & 0.3  \\
+			Loss\_function & binary\_cross\_entropy \\
+			Optimizer & Adam \\
+			\hline
+		\end{tabular}
+	\end{center}
+\end{frame}
+
+\begin{frame}{Resultados}
+	\begin{columns}
+		\begin{column}{0.5\textwidth}
+			BERT + FFNN
+			\tiny{\begin{tabular}{|c|l|l|}
+				\hline
+				Experimento & Acc & $ \begin{matrix}
+										 	F1 Score\\
+										 	 Macro
+										   \end{matrix} $ \\
+				\hline
+				$ \begin{matrix}
+						TEXT \to [BB] \\
+						BB\_OP \to [NN]
+					  \end{matrix} $ & 0.6882 & 0.5842 \\
+				\hline
+				 $ \begin{matrix}
+				 	TEXT + EMO \to [BB] \\
+				 	BB\_OP \to [NN]
+				 \end{matrix} $ & 0.6773 & 0.6352 \\
+				\hline
+				$ \begin{matrix}
+					TEXT + EMO  + \\
+					SPC \to [BB] \\
+					BB\_OP \to [NN]
+				\end{matrix} $ & 0.6720 & 0.6720 \\
+				\hline
+				$ \begin{matrix}
+					TEXT + EMO  + \\
+					SPC + SEN \to [BB] \\
+					BB\_OP \to [NN]
+				\end{matrix} $ & 0.6720 & 0.4097
+ \\
+				\hline
+				$ \begin{matrix}
+					TEXT \to [BB] \\
+					BB\_OP + EMO + \\
+					SPC + SEN \to [NN]
+				\end{matrix} $  & 0.6937 & 0.57234
+ \\
+				\hline
+			\end{tabular}}
+		\end{column}
+		\begin{column}{0.5\textwidth} 
+			BERT + CNN
+			\tiny{\begin{tabular}{|c|l|l|}
+					\hline
+					Experimento & Acc & $ \begin{matrix}
+						F1 Score\\
+						Macro
+					\end{matrix} $ \\
+					\hline
+					$ \begin{matrix}
+						TEXT \to [BB] \\
+						BB\_OP \to [CNN]
+					\end{matrix} $ & 0.6882 & 0.5308 \\
+					\hline
+					$ \begin{matrix}
+						TEXT + EMO  + \\
+						SPC \to [BB] \\
+						BB\_OP \to [CNN]
+					\end{matrix} $ & 0.5546  & 0.55641 \\
+					\hline
+					$ \begin{matrix}
+						TEXT \to [BB] \\
+						BB\_OP + EMO \to [CNN]
+					\end{matrix} $ & 0.6554  & 0.608 \\
+					\hline
+					$ \begin{matrix}
+						TEXT + SPC \to [BB] \\
+						BB\_OP  + EMO + \\
+						+ SPC \to [CNN]
+					\end{matrix} $ & 0.6890 & .6890 \\
+					\hline
+					$ \begin{matrix}
+						TEXT \to [BB] \\
+						BB\_OP + EMO +\\
+						SPC  \to [CNN]
+					\end{matrix} $ & 0.7000 & 0.6370
+ \\
+					\hline
+					$ \begin{matrix}
+						TEXT \to [BB] \\
+						BB\_OP + EMO + \\
+						SPC + SEN \to [CNN]
+					\end{matrix} $  & 00.6370 & 0.6430
+ \\
+					\hline
+			\end{tabular}}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%  F R A M E  20  %%%%%%%%%%%%%%%%
+\section{Conclusiones}
+\begin{frame}{Conclusiones}
+		\begin{enumerate}
+			\item Se extendió el dataset LIAR agregando emociones usando la API de IBM NLP y un puntaje de sentimiento usando la API de Google NLP.
+			\item Tanto para los experimentos realizados con FFNN como con CNN se incrementó el acurracy del estado del arte para el dataset LIAR.
+			\item El mejor modelo fue en el que se le dio TEXT directamente a BERT y luego se concatenó con el resto de los atributos para entrenar la parte de CNN.
+			\item El modelo tuvo un mejor resultado al usar los atributos EMO Y SEN, justo como lo decía la hipótesis de Undeutsch.
+		\end{enumerate}
+\end{frame}
+
+\begin{frame}{Observaciones}
+	\begin{enumerate}
+		\item Al revisar las gráficas de las pérdidas, hubo overfiting a partir de al segunda época
+		\begin{columns}
+			\begin{column}{0.5\textwidth}
+				\begin{center}
+					\includegraphics[width=0.9\linewidth]{figures/loss_nn}
+				\end{center}
+			\end{column}
+			\begin{column}{0.5\textwidth} 
+				\begin{center}
+					\includegraphics[width=0.9\linewidth]{figures/loss_cnn}
+				\end{center}	
+			\end{column}
+		\end{columns}
+	\end{enumerate}
+\textcolor{white}{\cite{1} \cite{3} \cite{4} \cite{6} \cite{7}}
+\end{frame}
+
+%%%%%%%%%%%%%%%%  F R A M E  16  %%%%%%%%%%%%%%%%
+\begin{frame}{Referencias}
+	\bibliographystyle{acm}
+	\small{\bibliography{ref}}
+\end{frame}
+
+\end{document}

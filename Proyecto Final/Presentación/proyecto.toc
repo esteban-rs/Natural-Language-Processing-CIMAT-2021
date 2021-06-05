@@ -1,0 +1,7 @@
+\babel@toc {spanish}{}
+\beamer@sectionintoc {1}{Revisi\'on de la Literatura}{6}{0}{1}
+\beamer@sectionintoc {2}{Estado del Arte}{8}{0}{2}
+\beamer@sectionintoc {3}{Metodolog\IeC {\'\i }a}{12}{0}{3}
+\beamer@sectionintoc {4}{Modelos}{14}{0}{4}
+\beamer@sectionintoc {5}{Resultados}{16}{0}{5}
+\beamer@sectionintoc {6}{Conclusiones}{18}{0}{6}

@@ -1,0 +1,29 @@
+\begin{thebibliography}{1}
+
+\bibitem{6}
+{\sc Kim, Y.}
+\newblock Convolutional neural networks for sentence classification, 2014.
+
+\bibitem{7}
+{\sc Long, Y., Lu, Q., Xiang, R., Li, M., and Huang, C.-R.}
+\newblock Fake news detection through multi-perspective speaker profiles.
+\newblock In {\em Proceedings of the Eighth International Joint Conference on
+  Natural Language Processing (Volume 2: Short Papers)\/} (Taipei, Taiwan, Nov.
+  2017), Asian Federation of Natural Language Processing, pp.~252--256.
+
+\bibitem{3}
+{\sc Oshikawa, R., Qian, J., and Wang, W.~Y.}
+\newblock A survey on natural language processing for fake news detection,
+  2020.
+
+\bibitem{1}
+{\sc Upadhayay, B., and Behzadan, V.}
+\newblock Sentimental liar: Extended corpus and deep learning models for fake
+  claim classification, 2020.
+
+\bibitem{4}
+{\sc Wang, W.~Y.}
+\newblock "liar, liar pants on fire": A new benchmark dataset for fake news
+  detection, 2017.
+
+\end{thebibliography}
